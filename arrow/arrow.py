@@ -24,6 +24,8 @@ from typing import (
     Mapping,
     Optional,
     Tuple,
+    Type,
+    TypeVar,
     Union,
     cast,
     overload,
@@ -41,6 +43,7 @@ if sys.version_info < (3, 8):  # pragma: no cover
 else:
     from typing import Final, Literal  # pragma: no cover
 
+T = TypeVar("T", bound="Arrow")
 
 TZ_EXPR = Union[dt_tzinfo, str]
 
@@ -183,7 +186,7 @@ class Arrow:
     # factories: single object, both original and from datetime.
 
     @classmethod
-    def now(cls, tzinfo: Optional[dt_tzinfo] = None) -> "Arrow":
+    def now(cls: Type[T], tzinfo: Optional[dt_tzinfo] = None) -> T:
         """Constructs an :class:`Arrow <arrow.arrow.Arrow>` object, representing "now" in the given
         timezone.
 
