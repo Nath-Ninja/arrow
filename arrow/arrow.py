@@ -1,9 +1,6 @@
 """
-Provides the :class:`Arrow <arrow.arrow.Arrow>` class, an enhanced ``datetime``
-replacement.
-
+Provides the Arrow class, an enhanced ``datetime`` replacement.
 """
-
 
 import calendar
 import re
@@ -84,9 +81,7 @@ _GRANULARITY = Literal[
 
 
 class Arrow:
-    """An :class:`Arrow <arrow.arrow.Arrow>` object.
-
-    Implements the ``datetime`` interface, behaving as an aware ``datetime`` while implementing
+    """Implements the ``datetime`` interface, behaving as an aware ``datetime`` while implementing
     additional functionality.
 
     :param year: the calendar year.
@@ -99,10 +94,8 @@ class Arrow:
     :param tzinfo: (optional) A timezone expression.  Defaults to UTC.
     :param fold: (optional) 0 or 1, used to disambiguate repeated wall times. Defaults to 0.
 
-    .. _tz-expr:
 
     Recognized timezone expressions:
-
         - A ``tzinfo`` object.
         - A ``str`` describing a timezone, similar to 'US/Pacific', or 'Europe/Berlin'.
         - A ``str`` in ISO 8601 style, as in '+07:00'.
@@ -187,7 +180,7 @@ class Arrow:
 
     @classmethod
     def now(cls: Type[T], tzinfo: Optional[dt_tzinfo] = None) -> T:
-        """Constructs an :class:`Arrow <arrow.arrow.Arrow>` object, representing "now" in the given
+        """Constructs an instance, representing "now" in the given
         timezone.
 
         :param tzinfo: (optional) a ``tzinfo`` object. Defaults to local time.
@@ -248,8 +241,7 @@ class Arrow:
         timestamp: Union[int, float, str],
         tzinfo: Optional[TZ_EXPR] = None,
     ) -> T:
-        """Constructs an instance from a timestamp, converted to
-        the given timezone.
+        """Constructs an instance from a timestamp, converted to the given timezone.
 
         :param timestamp: an ``int`` or ``float`` timestamp, or a ``str`` that converts to either.
         :param tzinfo: (optional) a ``tzinfo`` object.  Defaults to local time.
@@ -395,8 +387,7 @@ class Arrow:
 
     @classmethod
     def fromordinal(cls: Type[T], ordinal: int) -> T:
-        """Constructs an instance corresponding
-            to the Gregorian Ordinal.
+        """Constructs an instance corresponding to the Gregorian Ordinal.
 
         :param ordinal: an ``int`` corresponding to a Gregorian Ordinal.
 
@@ -432,8 +423,7 @@ class Arrow:
         tz: Optional[TZ_EXPR] = None,
         limit: Optional[int] = None,
     ) -> Generator[T, None, None]:
-        """Returns an iterator of instances, representing
-        points in time between two inputs.
+        """Returns an iterator of instances, representing points in time between two inputs.
 
         :param frame: The timeframe.  Can be any ``datetime`` property (day, hour, minute...).
         :param start: A datetime expression, the start of the range.
@@ -518,8 +508,9 @@ class Arrow:
         exact: bool = False,
         week_start: int = 1,
     ) -> Tuple[T, T]:
-        """Returns a tuple of two new instances, representing the timespan
-        of the instance in a given timeframe.
+        """Returns a tuple of two new instances.
+         representing the start and end of a tine period that encapsulates the instance.
+
 
         :param frame: the timeframe.  Can be any ``datetime`` property (day, hour, minute...).
         :param count: (optional) the number of frames to span.
@@ -1044,8 +1035,7 @@ class Arrow:
         return self.fromdatetime(current)
 
     def to(self: T, tz: TZ_EXPR) -> T:
-        """Returns a new instance, converted
-        to the target timezone.
+        """Returns a new instance, converted to the target timezone.
 
         :param tz: A :ref:`timezone expression <tz-expr>`.
 
@@ -1127,7 +1117,7 @@ class Arrow:
     ) -> str:
         """Returns a localized, humanized representation of a relative difference in time.
 
-        :param other: (optional) an :class:`Arrow <arrow.arrow.Arrow>` or ``datetime`` object.
+        :param other: (optional) an Arrow instance or ``datetime`` object.
             Defaults to now in the current instance's timezone.
         :param locale: (optional) a ``str`` specifying a locale.  Defaults to 'en-us'.
         :param only_distance: (optional) returns only time difference eg: "11 seconds" without "in" or "ago" part.
